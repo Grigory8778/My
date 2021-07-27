@@ -11,6 +11,7 @@ import android.widget.TextView
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import okhttp3.logging.HttpLoggingInterceptor
 import java.util.logging.Handler as Handler1
 
 class MainActivity : AppCompatActivity() {
@@ -25,14 +26,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getInfo() {
+
         val weatherApi = (applicationContext as SingletonsProvider).getWeatherApi()
         val txt = findViewById<TextView>(R.id.txt_mmm)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        var bool = true
         findViewById<Button>(R.id.button).setOnClickListener {
-            progressBar.visibility = View.VISIBLE
+            bool = !bool
             mainScope.launch {
-                //txt.text = weatherApi.getPollutionInfo(55.90, 49.07).toString()
-                txt.text = weatherApi.getWeatherInfo(55.90, 49.07).toString()
+                if (bool == true) {
+                    txt.text = weatherApi.getWeatherInfo(55.90, 49.07).toString()
+
+                } else {
+                    txt.text = weatherApi.getPollutionInfo(55.90, 49.07).toString()
+
+
+                }
+
             }
         }
     }

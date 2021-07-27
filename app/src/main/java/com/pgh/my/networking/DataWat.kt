@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 data class Temperature(
     @SerializedName("coord")
     val coord: Coord,
-    @SerializedName("coord")
-    val weather: Weather,
+    @SerializedName("weather")
+    val weatherList: List<Weather>,
     @SerializedName("base")
     val base: String,
     @SerializedName("main")
@@ -31,7 +31,12 @@ data class Temperature(
     val cod: Int,
 
     )
-
+data class Coord(
+    @SerializedName("lon")
+    val lon: Double,
+    @SerializedName("lat")
+    val lat: Double
+)
 data class Weather(
     @SerializedName("id")
     val id: Int,
@@ -41,13 +46,6 @@ data class Weather(
     val description:String,
     @SerializedName("icon")
     val icon:String
-)
-
-data class Coord(
-    @SerializedName("lon")
-    val lon: Double,
-    @SerializedName("lat")
-    val lat: Double
 )
 
 data class Sys(
