@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My</string>
+    <string name="button_name">Next Network Call</string>
 </resources>
