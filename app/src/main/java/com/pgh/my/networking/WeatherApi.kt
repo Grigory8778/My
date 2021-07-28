@@ -19,4 +19,8 @@ interface WeatherApi {
         @Query("lon") lon: Double,
         @Query("appid") appid: String = NetworkComponent.PRIVATE_API_KEY
     ): Temperature
+
+    @GET("${NetworkComponent.KOIN}")
+    suspend fun getKoin(
+    ): Koin
 }

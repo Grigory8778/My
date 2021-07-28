@@ -6,7 +6,7 @@ data class Temperature(
     @SerializedName("coord")
     val coord: Coord,
     @SerializedName("weather")
-    val weatherList: List<Weather>,
+    val weatherList: List<Weather1>,
     @SerializedName("base")
     val base: String,
     @SerializedName("main")
@@ -37,7 +37,7 @@ data class Coord(
     @SerializedName("lat")
     val lat: Double
 )
-data class Weather(
+data class Weather1(
     @SerializedName("id")
     val id: Int,
     @SerializedName("main")

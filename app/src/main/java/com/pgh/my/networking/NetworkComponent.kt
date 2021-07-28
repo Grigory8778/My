@@ -30,6 +30,8 @@ class NetworkComponent {
         private const val API_VER = "2.5/"
         const val API_POLLUTION = "air_pollution"
         const val API_WEATHER = "weather"
+        const val API_KOIN = "onecal"
         const val PRIVATE_API_KEY = "1ede803bab758fa95676a5656f201ed7"
+        const val KOIN="https://api.openweathermap.org/data/2.5/onecall?lat=55.90&lon=49.07&units=metric&exclude=minutely&appid=1ede803bab758fa95676a5656f201ed7"
     }
 }

@@ -32,13 +32,14 @@ class MainActivity : AppCompatActivity() {
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
         var bool = true
         findViewById<Button>(R.id.button).setOnClickListener {
+            progressBar.visibility
             bool = !bool
             mainScope.launch {
-                if (bool == true) {
+                if (bool) {
                     txt.text = weatherApi.getWeatherInfo(55.90, 49.07).toString()
 
                 } else {
-                    txt.text = weatherApi.getPollutionInfo(55.90, 49.07).toString()
+                    txt.text = weatherApi.getKoin().toString()
 
 
                 }
