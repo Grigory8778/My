@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">My</string>
-    <string name="button_name">Next Network Call</string>
+    <string name="button_name_weather">Next Network Call</string>
+    <string name="button_name_pollution">Back Network Call</string>
 </resources>
