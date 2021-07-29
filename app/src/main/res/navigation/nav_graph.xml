@@ -8,5 +8,18 @@
         android:id="@+id/weatherFragment"
         android:name="com.pgh.my.WeatherFragment"
         android:label="fragment_weather"
-        tools:layout="@layout/fragment_weather" />
+        tools:layout="@layout/fragment_weather" >
+        <action
+            android:id="@+id/action_weatherFragment_to_pollutionFragment"
+            app:destination="@id/pollutionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pollutionFragment"
+        android:name="com.pgh.my.networking.PollutionFragment"
+        android:label="PollutionFragment"
+        tools:layout="@layout/fragment_pollution">
+        <action
+            android:id="@+id/action_pollutionFragment_to_weatherFragment"
+            app:destination="@id/weatherFragment" />
+    </fragment>
 </navigation>

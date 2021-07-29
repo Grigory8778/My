@@ -1,23 +1,24 @@
-package com.pgh.my
+package com.pgh.my.networking
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.pgh.my.networking.WeatherApi
+import com.pgh.my.MainActivity
+import com.pgh.my.R
+import com.pgh.my.SingletonsProvider
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
-
-class WeatherFragment : Fragment() {
+class PollutionFragment:Fragment() {
     private val mainScope = MainScope()
-    private var isWeatherCall = true
+    private var isPollutionCall = true
     private lateinit var weatherApi: WeatherApi
     private lateinit var textView: TextView
     private lateinit var progressBar: ProgressBar
@@ -26,32 +27,35 @@ class WeatherFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_weather, container, false)
+        return inflater.inflate(R.layout.fragment_pollution, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         weatherApi = (requireActivity().applicationContext as SingletonsProvider).getWeatherApi()
         savedInstanceState?.let {
-            isWeatherCall = it.getBoolean(NETWORK_CALL_STATE)
+            isPollutionCall = it.getBoolean(NETWORK_CALL_STATE_POLUTION)
         }
-        textView = view.findViewById(R.id.txt_weater_fragment)
-        progressBar = view.findViewById(R.id.progressBar_weather_fragment)
-        view.findViewById<Button>(R.id.button_weather_fragment).setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_weatherFragment_to_pollutionFragment)
-            isWeatherCall = !isWeatherCall
+
+        textView = view.findViewById(R.id.txt_pollution_fragment)
+        progressBar = view.findViewById(R.id.progressBar_pollution_fragment)
+
+        view.findViewById<Button>(R.id.button_pollution_fragment).setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_pollutionFragment_to_weatherFragment)
+            isPollutionCall = !isPollutionCall
         }
-        getInfoWeather()
+        getInfoPollution()
+
     }
-    private fun getInfoWeather() {
+    private fun getInfoPollution() {
+
         mainScope.launch {
             progressBar.visibility = View.VISIBLE
-            textView.text = weatherApi.getWeatherInfo(55.90, 49.07).toString()
+            textView.text = weatherApi.getPollutionInfo(55.90, 49.07).toString()
             progressBar.visibility = View.GONE
         }
     }
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putBoolean(NETWORK_CALL_STATE, isWeatherCall)
+        outState.putBoolean(NETWORK_CALL_STATE_POLUTION, isPollutionCall)
         super.onSaveInstanceState(outState)
     }
 
@@ -61,6 +65,6 @@ class WeatherFragment : Fragment() {
     }
 
     companion object {
-        const val NETWORK_CALL_STATE = "NETWORK_CALL_STATE"
+        const val NETWORK_CALL_STATE_POLUTION = "NETWORK_CALL_STATE_POLLUTION"
     }
 }
