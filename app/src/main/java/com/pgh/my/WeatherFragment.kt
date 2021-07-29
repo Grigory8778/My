@@ -42,7 +42,6 @@ class WeatherFragment : Fragment() {
         view.findViewById<Button>(R.id.button).setOnClickListener {
             getInfo()
             isPollutionCall = !isPollutionCall
-
         }
         getInfo()
 
