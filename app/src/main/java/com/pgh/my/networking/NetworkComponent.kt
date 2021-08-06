@@ -26,8 +26,8 @@ class NetworkComponent {
 
 
     companion object {
-        private const val API_URL = "https://api.openweathermap.org/data/"
-        private const val API_VER = "2.5/"
+        const val API_URL = "https://api.openweathermap.org/data/"
+        const val API_VER = "2.5/"
         const val API_POLLUTION = "air_pollution"
         const val API_WEATHER = "weather"
         const val API_WEATHER_DAILY = "onecal"

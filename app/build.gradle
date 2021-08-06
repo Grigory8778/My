@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
@@ -9,11 +10,11 @@ android {
 
     defaultConfig {
         applicationId "com.pgh.my"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -34,9 +35,13 @@ android {
 
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.room:room-runtime:2.3.0'
+    annotationProcessor 'androidx.room:room-compiler:2.3.0'
     def kotlin_version = '1.5.0'
     def coroutines_version = '1.5.0'
     def nav_version = "2.3.5"
+    def room_version = "2.3.0"
+    def koin_version = "3.1.2"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'
@@ -48,13 +53,31 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"
+    // Koin core features
+    implementation "io.insert-koin:koin-core:$koin_version"
+    // Koin test features
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    // Koin main features for Android (Scope,ViewModel ...)
+    implementation "io.insert-koin:koin-android:$koin_version"
+// Koin Java Compatibility
+    implementation "io.insert-koin:koin-android-compat:$koin_version"
+// Koin for Jetpack WorkManager
+    implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
+// Koin for Jetpack Compose
+    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
     //kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
     implementation 'com.google.code.gson:gson:2.8.7'
-
     implementation "com.squareup.okhttp3:okhttp:4.9.1"
+    //room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava3:$room_version"
+    implementation "androidx.room:room-ktx:2.3.0"
+    testImplementation "androidx.room:room-testing:2.3.0"
+
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
