@@ -29,7 +29,7 @@ val appModule = module {
 
 
     single <WeatherApi> { weatherApi }
-    single { MainViewModel() }
+    single { MainViewModel(get()) }
     }
 
 
