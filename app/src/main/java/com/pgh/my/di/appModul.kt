@@ -1,6 +1,7 @@
 package com.pgh.my
 
 import com.google.gson.Gson
+import com.pgh.my.ViewModel.MainViewModel
 import com.pgh.my.networking.WeatherApi
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
@@ -28,6 +29,7 @@ val appModule = module {
 
 
     single <WeatherApi> { weatherApi }
+    single { MainViewModel() }
+    }
 
-}
 

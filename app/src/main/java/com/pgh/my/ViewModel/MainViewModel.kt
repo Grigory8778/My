@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 import org.koin.core.KoinApplication.Companion.init
 
 open class MainViewModel(
-    val singletonsProvider: SingletonsProvider
     ) : ViewModel() {
 
     val dataWeather: MutableLiveData<String> = MutableLiveData()
