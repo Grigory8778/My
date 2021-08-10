@@ -4,43 +4,29 @@ import android.app.Application
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.pgh.my.networking.NetworkComponent
-import com.pgh.my.networking.WeatherApi
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
-class App : Application(), SingletonsProvider {
+class App : Application()  {
+
     lateinit var database: AppDatabase
-    private val singletonsHolder = HashMap<Any, Any>()
 //    val _weatherApi: WeatherApi by lazy {
 //        NetworkComponent().weatherApi
 //    }
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
         database = Room.databaseBuilder(this, AppDatabase::class.java, "database")
             .addMigrations(mig, migration, migration3,migration4)
             .build()
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(appModule )
+            androidFileProperties()
+            modules(appModule)
         }
-    }
-
-    override fun getWeatherApi(): WeatherApi {
-
-        if (singletonsHolder[WeatherApi::class.java.simpleName] == null) {
-            singletonsHolder[WeatherApi::class.java.simpleName] = NetworkComponent().weatherApi
-        }
-        return singletonsHolder[WeatherApi::class.java.simpleName] as WeatherApi
-//        return _weatherApi
-    }
-
-    companion object {
-        lateinit var instance: App
     }
 
     val mig = object : Migration(1, 2) {

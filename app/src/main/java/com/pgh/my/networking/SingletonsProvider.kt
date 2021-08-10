@@ -1,7 +1,4 @@
-package com.pgh.my
-
-import com.pgh.my.networking.WeatherApi
-
+package com.pgh.my.networking
 
 
 interface SingletonsProvider {

@@ -21,5 +21,13 @@
         <action
             android:id="@+id/action_pollutionFragment_to_weatherFragment"
             app:destination="@id/weatherFragment" />
+        <action
+            android:id="@+id/action_pollutionFragment_to_viewFragment"
+            app:destination="@id/viewFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/viewFragment"
+        android:name="com.pgh.my.ViewFragment"
+        android:label="ViewFragment"
+        tools:layout="@layout/fragment_view"/>
 </navigation>

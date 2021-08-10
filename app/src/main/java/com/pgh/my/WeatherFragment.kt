@@ -9,24 +9,27 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.navigation.Navigation
+import com.pgh.my.databinding.FragmentWeatherBinding
 import com.pgh.my.networking.WeatherApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import okhttp3.internal.threadName
+import org.koin.android.ext.android.inject
 
 
 class WeatherFragment : Fragment() {
+
     private val mainScope = MainScope()
     private var isWeatherCall = true
     private lateinit var weatherApi: WeatherApi
     private lateinit var textView: TextView
     private lateinit var progressBar: ProgressBar
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        weatherApi = (requireActivity().applicationContext as SingletonsProvider).getWeatherApi()
         savedInstanceState?.let {
             isWeatherCall = it.getBoolean(NETWORK_CALL_STATE)
         }
@@ -44,7 +47,6 @@ class WeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        weatherApi = (requireActivity().applicationContext as SingletonsProvider).getWeatherApi()
         savedInstanceState?.let {
             isWeatherCall = it.getBoolean(NETWORK_CALL_STATE)
         }

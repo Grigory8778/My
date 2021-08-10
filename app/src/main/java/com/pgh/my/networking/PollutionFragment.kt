@@ -9,19 +9,19 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.pgh.my.MainActivity
 import com.pgh.my.R
-import com.pgh.my.SingletonsProvider
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
+
 
 class PollutionFragment:Fragment() {
     private val mainScope = MainScope()
     private var isPollutionCall = true
-    private lateinit var weatherApi: WeatherApi
     private lateinit var textView: TextView
     private lateinit var progressBar: ProgressBar
+    private val weatherApi by inject<WeatherApi>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +31,6 @@ class PollutionFragment:Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        weatherApi = (requireActivity().applicationContext as SingletonsProvider).getWeatherApi()
         savedInstanceState?.let {
             isPollutionCall = it.getBoolean(NETWORK_CALL_STATE_POLUTION)
         }
@@ -44,13 +43,24 @@ class PollutionFragment:Fragment() {
             isPollutionCall = !isPollutionCall
         }
         getInfoPollution()
+        view.findViewById<Button>(R.id.button_pollution_fragment_next).setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_pollutionFragment_to_viewFragment)
+        }
 
     }
     private fun getInfoPollution() {
 
         mainScope.launch {
             progressBar.visibility = View.VISIBLE
-            textView.text = weatherApi.getPollutionInfo(55.90, 49.07).toString()
+            val resp =try {
+                 weatherApi.getPollutionInfo(55.90, 49.07).toString()
+            }
+            catch (e:Exception){
+                null
+            }
+            textView.text = if (resp==null)"Пусто"
+                else
+                    resp
             progressBar.visibility = View.GONE
         }
     }

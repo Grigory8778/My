@@ -1,6 +1,7 @@
 package com.pgh.my
 
 import com.google.gson.Gson
+import com.pgh.my.networking.WeatherApi
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -10,17 +11,23 @@ import java.util.concurrent.TimeUnit
 val appModule = module {
 
     val gson = Gson()
-
-    factory { OkHttpClient.Builder()
+    val okHttpClient = OkHttpClient.Builder()
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
         .connectTimeout(30, TimeUnit.SECONDS)
-        .build() }
-    single {  Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create(gson))
-        .client(get())
-        .baseUrl(API_URL + API_VER )
         .build()
-    }
+
+    val weatherApi: WeatherApi =
+        Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(okHttpClient)
+            .baseUrl(API_URL + API_VER)
+            .build()
+            .create(WeatherApi::class.java)
+
+
+
+    single <WeatherApi> { weatherApi }
+
 }
 
