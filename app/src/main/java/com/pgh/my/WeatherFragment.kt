@@ -63,7 +63,7 @@ class WeatherFragment : Fragment() {
     private fun getInfoWeather() {
         mainScope.launch {
             progressBar.visibility = View.VISIBLE
-            weatherApi.getInfoCity()
+            weatherApi.getInfoCity(200,5,55.75,48.69)
             progressBar.visibility = View.GONE
         }
     }

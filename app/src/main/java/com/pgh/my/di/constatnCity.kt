@@ -1,3 +1,4 @@
 package com.pgh.my.di
 
-const val API_URL_CITY = "http://getnearbycities.geobytes.com/GetNearbyCities?radius=200&limit=5&latitude=55.75&longitude=48.69/"
+const val API_URL_CITY = "http://getnearbycities.geobytes.com/"
+const val API_NEARBY_CITIES ="GetNearbyCities"

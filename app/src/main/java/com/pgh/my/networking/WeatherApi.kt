@@ -35,5 +35,10 @@ interface WeatherApi {
     ): WeatherDailyResponse
 
     @GET("City")
-    suspend fun getInfoCity(): Array<Array<String>>
+    suspend fun getInfoCity(
+        @Query("radius") radius: Int ,
+        @Query("limit") limit: Int ,
+        @Query("latitude") latitude: Double,
+        @Query("longitude") longitude: Double,
+    ): Array<Array<String>>
 }
