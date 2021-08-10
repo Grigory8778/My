@@ -17,19 +17,15 @@ class ViewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= FragmentViewBinding.inflate(inflater,container,false)
+        binding = FragmentViewBinding.inflate(inflater, container, false)
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.dataWeather.observe(viewLifecycleOwner) { value ->
-            binding.textViewmodelFragment.text=value
+            binding.textViewmodelFragment.text = value
 
         }
-
-
-
-
     }
 }

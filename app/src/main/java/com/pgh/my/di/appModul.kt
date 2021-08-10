@@ -2,6 +2,7 @@ package com.pgh.my
 
 import com.google.gson.Gson
 import com.pgh.my.ViewModel.MainViewModel
+import com.pgh.my.di.API_URL_CITY
 import com.pgh.my.networking.WeatherApi
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
@@ -22,7 +23,7 @@ val appModule = module {
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(okHttpClient)
-            .baseUrl(API_URL + API_VER)
+            .baseUrl(API_URL_CITY)
             .build()
             .create(WeatherApi::class.java)
 

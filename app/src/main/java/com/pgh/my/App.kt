@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -25,7 +26,7 @@ class App : Application()  {
             androidLogger()
             androidContext(this@App)
             androidFileProperties()
-            modules(appModule)
+            modules(appModule, )
         }
     }
 

@@ -42,8 +42,8 @@ class PollutionFragment:Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_pollutionFragment_to_weatherFragment)
             isPollutionCall = !isPollutionCall
         }
-        getInfoPollution()
-        view.findViewById<Button>(R.id.button_pollution_fragment_next).setOnClickListener {
+//        getInfoPollution()
+    view.findViewById<Button>(R.id.button_pollution_fragment_next).setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_pollutionFragment_to_viewFragment)
         }
 

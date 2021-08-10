@@ -9,7 +9,7 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.navigation.Navigation
-import com.pgh.my.databinding.FragmentWeatherBinding
+
 import com.pgh.my.networking.WeatherApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
@@ -23,9 +23,9 @@ class WeatherFragment : Fragment() {
 
     private val mainScope = MainScope()
     private var isWeatherCall = true
-    private lateinit var weatherApi: WeatherApi
     private lateinit var textView: TextView
     private lateinit var progressBar: ProgressBar
+    private val weatherApi by inject<WeatherApi>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +63,7 @@ class WeatherFragment : Fragment() {
     private fun getInfoWeather() {
         mainScope.launch {
             progressBar.visibility = View.VISIBLE
-            //textView.text = App.instance.database.weatherDao().getByID(2).name
+            weatherApi.getInfoCity()
             progressBar.visibility = View.GONE
         }
     }

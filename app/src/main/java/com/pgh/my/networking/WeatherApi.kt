@@ -33,4 +33,7 @@ interface WeatherApi {
         @Query("appid") appid: String = PRIVATE_API_KEY,
         @Query("units") units: String = API_MEASURE_UNITS_METRIC
     ): WeatherDailyResponse
+
+    @GET("City")
+    suspend fun getInfoCity(): Array<Array<String>>
 }

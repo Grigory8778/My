@@ -29,5 +29,9 @@
         android:id="@+id/viewFragment"
         android:name="com.pgh.my.ViewFragment"
         android:label="ViewFragment"
-        tools:layout="@layout/fragment_view"/>
+        tools:layout="@layout/fragment_view">
+        <action
+            android:id="@+id/action_viewFragment_to_pollutionFragment"
+            app:destination="@id/pollutionFragment" />
+    </fragment>
 </navigation>
