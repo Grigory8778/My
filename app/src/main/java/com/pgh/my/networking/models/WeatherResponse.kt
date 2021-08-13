@@ -10,7 +10,7 @@ data class WeatherResponse(
     @SerializedName("base")
     val base: String,
     @SerializedName("main")
-    val main: MainAqi,
+    val main: MainTemperature,
     @SerializedName("visibility")
     val visibility: Int,
     @SerializedName("wind")

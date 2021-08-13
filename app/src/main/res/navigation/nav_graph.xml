@@ -3,35 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/weatherFragment">
+    app:startDestination="@id/cityFragment">
+    <fragment
+        android:id="@+id/cityFragment"
+        android:name="com.pgh.my.CityFragment"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_city" >
+        <action
+            android:id="@+id/action_cityFragment_to_weatherFragment"
+            app:destination="@id/weatherFragment" />
+    </fragment>
     <fragment
         android:id="@+id/weatherFragment"
-        android:name="com.pgh.my.WeatherFragment"
-        android:label="fragment_weather"
-        tools:layout="@layout/fragment_weather" >
-        <action
-            android:id="@+id/action_weatherFragment_to_pollutionFragment"
-            app:destination="@id/pollutionFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/pollutionFragment"
-        android:name="com.pgh.my.networking.PollutionFragment"
+        android:name="com.pgh.my.weather.WeatherFragment"
         android:label="PollutionFragment"
         tools:layout="@layout/fragment_pollution">
+        <argument
+            android:name="lat"
+            app:argType="string"
+            app:nullable="false"
+            android:defaultValue="0"/>
+        <argument
+            android:name="lon"
+            app:argType="string"
+            app:nullable="false"
+            android:defaultValue="0"/>
         <action
-            android:id="@+id/action_pollutionFragment_to_weatherFragment"
-            app:destination="@id/weatherFragment" />
-        <action
-            android:id="@+id/action_pollutionFragment_to_viewFragment"
-            app:destination="@id/viewFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/viewFragment"
-        android:name="com.pgh.my.ViewFragment"
-        android:label="ViewFragment"
-        tools:layout="@layout/fragment_view">
-        <action
-            android:id="@+id/action_viewFragment_to_pollutionFragment"
-            app:destination="@id/pollutionFragment" />
+            android:id="@+id/action_weatherFragment_to_cityFragment"
+            app:destination="@id/cityFragment" />
+
+
     </fragment>
 </navigation>

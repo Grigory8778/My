@@ -4,29 +4,28 @@ import android.app.Application
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.pgh.my.di.cityModule
 
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
-class App : Application()  {
+class App : Application() {
 
     lateinit var database: AppDatabase
-//    val _weatherApi: WeatherApi by lazy {
-//        NetworkComponent().weatherApi
-//    }
+
 
     override fun onCreate() {
         super.onCreate()
         database = Room.databaseBuilder(this, AppDatabase::class.java, "database")
-            .addMigrations(mig, migration, migration3,migration4)
+            .addMigrations(mig, migration, migration3, migration4)
             .build()
         startKoin {
             androidLogger()
             androidContext(this@App)
             androidFileProperties()
-            modules(appModule, )
+            modules(appModule, cityModule)
         }
     }
 
