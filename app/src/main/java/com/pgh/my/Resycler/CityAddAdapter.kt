@@ -6,12 +6,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.pgh.my.CityFragment
 import com.pgh.my.CityFragmentDirections
 import com.pgh.my.R
 
 
-class StAdapter() : RecyclerView.Adapter<StAdapter.StViewHonder>() {
+class CityAddAdapter() : RecyclerView.Adapter<CityAddAdapter.StViewHonder>() {
     private val list = ArrayList<Array<String>>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StViewHonder {

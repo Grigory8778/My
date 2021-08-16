@@ -11,13 +11,11 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.pgh.my.R
 import com.pgh.my.viewModel.WeatherViewModel
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 open class WeatherFragment : Fragment() {
-    private val mainScope = MainScope()
+
     private var isPollutionCall = true
     private lateinit var textView3: TextView
     private lateinit var textView1: TextView
@@ -36,13 +34,13 @@ open class WeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        textView1 = view.findViewById(R.id.txt_weather1_fragment)
-        textView3 = view.findViewById(R.id.txt_weather3_fragment)
-        textView4 = view.findViewById(R.id.txt_weather4_fragment)
-        textView2 = view.findViewById(R.id.txt_weather2_fragment)
+        textView1 = view.findViewById(R.id.weather_fragment_show_text_temp)
+        textView3 = view.findViewById(R.id.weather_fragment_show_info_temp_text_view)
+        textView4 = view.findViewById(R.id.weather_fragment_show_info_humidity_text_view)
+        textView2 = view.findViewById(R.id.weather_fragment_show_text_humidity)
         viewModelPollution.getCitiData(args.lat, args.lon)
         getInfoPollution()
-        view.findViewById<Button>(R.id.button_weather_fragment).setOnClickListener {
+        view.findViewById<Button>(R.id.weather_fragment_button).setOnClickListener {
             Navigation.findNavController(view)
                 .navigate(R.id.action_weatherFragment_to_cityFragment)
             isPollutionCall = !isPollutionCall
@@ -63,10 +61,5 @@ open class WeatherFragment : Fragment() {
         textView3.text = if (resp == null) "Пусто"
         else
             resp.toString()
-    }
-
-    override fun onDestroy() {
-        mainScope.cancel()
-        super.onDestroy()
     }
 }

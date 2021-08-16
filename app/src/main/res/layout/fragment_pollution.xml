@@ -5,45 +5,45 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/txt_weather1_fragment"
+        android:id="@+id/weather_fragment_show_text_temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/marg16"
+        android:layout_margin="16dp"
         android:text="@string/text_temp"
         android:textSize="@dimen/txt_size24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txt_weather2_fragment"
+        android:id="@+id/weather_fragment_show_text_humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/marg16"
+        android:layout_margin="16dp"
         android:text="@string/text_humidity"
         android:textSize="@dimen/txt_size24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_weather1_fragment" />
+        app:layout_constraintTop_toBottomOf="@+id/weather_fragment_show_text_temp" />
 
     <TextView
-        android:id="@+id/txt_weather3_fragment"
+        android:id="@+id/weather_fragment_show_info_temp_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:textSize="@dimen/txt_size24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txt_weather1_fragment" />
+        app:layout_constraintTop_toTopOf="@+id/weather_fragment_show_text_temp" />
 
     <TextView
-        android:id="@+id/txt_weather4_fragment"
+        android:id="@+id/weather_fragment_show_info_humidity_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:textSize="@dimen/txt_size24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txt_weather2_fragment" />
+        app:layout_constraintTop_toTopOf="@+id/weather_fragment_show_text_humidity" />
 
     <Button
-        android:id="@+id/button_weather_fragment"
+        android:id="@+id/weather_fragment_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_name_pollution"

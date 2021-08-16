@@ -19,7 +19,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         database = Room.databaseBuilder(this, AppDatabase::class.java, "database")
-            .addMigrations(mig, migration, migration3, migration4)
+            .addMigrations(migration)
             .build()
         startKoin {
             androidLogger()
@@ -28,29 +28,7 @@ class App : Application() {
             modules(appModule, cityModule)
         }
     }
-
-    val mig = object : Migration(1, 2) {
-        override fun migrate(database: SupportSQLiteDatabase) {
-            database.execSQL("ALTER TABLE 'Weather' ADD COLUMN 'city' TEXT")
-            database.execSQL("UPDATE  'Weather' SET city = 'Киев'")
-
-        }
-    }
-
-    val migration = object : Migration(2, 3) {
-        override fun migrate(database: SupportSQLiteDatabase) {
-            database.execSQL("UPDATE  'Weather' SET city = 'Москва' WHERE city = NULL")
-
-        }
-    }
-
-    val migration3 = object : Migration(3, 4) {
-        override fun migrate(database: SupportSQLiteDatabase) {
-            database.execSQL("UPDATE  'Weather' SET city = 'Москва' WHERE city == NULL")
-
-        }
-    }
-    val migration4 = object : Migration(4, 5) {
+    val migration = object : Migration(4, 5) {
         override fun migrate(database: SupportSQLiteDatabase) {
             database.execSQL("UPDATE  'Weather' SET city = 'Питер' WHERE id=4")
 
