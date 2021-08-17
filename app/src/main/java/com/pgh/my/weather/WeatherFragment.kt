@@ -17,28 +17,28 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 open class WeatherFragment : Fragment() {
 
     private var isPollutionCall = true
-    private lateinit var textView3: TextView
-    private lateinit var textView1: TextView
-    private lateinit var textView2: TextView
-    private lateinit var textView4: TextView
-    private val viewModelPollution by viewModel<WeatherViewModel>()
+    private lateinit var textInfoTemp: TextView
+    private lateinit var textNameTemp: TextView
+    private lateinit var textNameHumiditi: TextView
+    private lateinit var textInfoHumiditi: TextView
+    private val weatherViewModel by viewModel<WeatherViewModel>()
     private val args: WeatherFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_pollution, container, false)
+        return inflater.inflate(R.layout.fragment_weather, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        textView1 = view.findViewById(R.id.weather_fragment_show_text_temp)
-        textView3 = view.findViewById(R.id.weather_fragment_show_info_temp_text_view)
-        textView4 = view.findViewById(R.id.weather_fragment_show_info_humidity_text_view)
-        textView2 = view.findViewById(R.id.weather_fragment_show_text_humidity)
-        viewModelPollution.getCitiData(args.lat, args.lon)
+        textNameTemp = view.findViewById(R.id.weather_fragment_tv_temp)
+        textInfoHumiditi = view.findViewById(R.id.weather_fragment_tv_humidity_info)
+        textInfoTemp = view.findViewById(R.id.weather_fragment_tv_temp_info)
+        textNameHumiditi = view.findViewById(R.id.weather_fragment_tv_humidity)
+        weatherViewModel.getCitiData(args.lat, args.lon)
         getInfoPollution()
         view.findViewById<Button>(R.id.weather_fragment_button).setOnClickListener {
             Navigation.findNavController(view)
@@ -48,18 +48,11 @@ open class WeatherFragment : Fragment() {
     }
 
     private fun getInfoPollution() {
-        val resp = try {
-            viewModelPollution.tempPollution.observe(viewLifecycleOwner) { value ->
-                textView3.text = value.main.temp.toString()
-            }
-            viewModelPollution.tempPollution.observe(viewLifecycleOwner) { value ->
-                textView4.text = value.main.humidity.toString()
-            }
-        } catch (e: Exception) {
-            null
+        weatherViewModel.tempPollution.observe(viewLifecycleOwner) { value ->
+            textInfoTemp.text = value.main.temp.toString()
         }
-        textView3.text = if (resp == null) "Пусто"
-        else
-            resp.toString()
+        weatherViewModel.tempPollution.observe(viewLifecycleOwner) { value ->
+            textInfoHumiditi.text = value.main.humidity.toString()
+        }
     }
 }

@@ -1,8 +1,7 @@
-package com.pgh.my
+package com.pgh.my.di
 
 import com.google.gson.Gson
 import com.pgh.my.viewModel.CityViewModel
-import com.pgh.my.di.API_URL_CITY
 import com.pgh.my.networking.CityApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/weather_fragment_show_text_temp"
+        android:id="@+id/weather_fragment_tv_temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -15,38 +15,38 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/weather_fragment_show_text_humidity"
+        android:id="@+id/weather_fragment_tv_humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/text_humidity"
         android:textSize="@dimen/txt_size24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weather_fragment_show_text_temp" />
+        app:layout_constraintTop_toBottomOf="@+id/weather_fragment_tv_temp" />
 
     <TextView
-        android:id="@+id/weather_fragment_show_info_temp_text_view"
+        android:id="@+id/weather_fragment_tv_temp_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:textSize="@dimen/txt_size24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/weather_fragment_show_text_temp" />
+        app:layout_constraintTop_toTopOf="@+id/weather_fragment_tv_temp" />
 
     <TextView
-        android:id="@+id/weather_fragment_show_info_humidity_text_view"
+        android:id="@+id/weather_fragment_tv_humidity_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:textSize="@dimen/txt_size24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/weather_fragment_show_text_humidity" />
+        app:layout_constraintTop_toTopOf="@+id/weather_fragment_tv_humidity" />
 
     <Button
         android:id="@+id/weather_fragment_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_name_pollution"
+        android:text="@string/button_weather_back"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

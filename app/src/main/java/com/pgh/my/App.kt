@@ -4,8 +4,9 @@ import android.app.Application
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.pgh.my.db.AppDatabase
+import com.pgh.my.di.appModule
 import com.pgh.my.di.cityModule
-
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger

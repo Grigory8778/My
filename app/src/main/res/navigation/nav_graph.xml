@@ -17,7 +17,7 @@
         android:id="@+id/weatherFragment"
         android:name="com.pgh.my.weather.WeatherFragment"
         android:label="PollutionFragment"
-        tools:layout="@layout/fragment_pollution">
+        tools:layout="@layout/fragment_weather">
         <argument
             android:name="lat"
             app:argType="string"

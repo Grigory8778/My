@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pgh.my.Resycler.CityAddAdapter
 import com.pgh.my.viewModel.CityViewModel
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

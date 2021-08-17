@@ -1,16 +1,6 @@
-package com.pgh.my
+package com.pgh.my.db
 
 import androidx.room.*
-
-
-@Entity
-data class Weather(
-    @PrimaryKey(autoGenerate = true)
-    var id: Long,
-    var name: String? = null,
-    var city: String? = null
-
-)
 
 @Dao
 interface WeatherDao {
@@ -30,9 +20,3 @@ interface WeatherDao {
     fun delete(weather: Weather)
 
 }
-@Database(entities = [Weather::class], version = 5)
-abstract class AppDatabase : RoomDatabase() {
-    abstract fun weatherDao(): WeatherDao
-
-}
-
