@@ -3,10 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/weatherFragment">
+    app:startDestination="@id/cityFragment">
+    <fragment
+        android:id="@+id/cityFragment"
+        android:name="com.pgh.my.CityFragment"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_city" >
+        <action
+            android:id="@+id/action_cityFragment_to_weatherFragment"
+            app:destination="@id/weatherFragment" />
+    </fragment>
     <fragment
         android:id="@+id/weatherFragment"
-        android:name="com.pgh.my.WeatherFragment"
-        android:label="fragment_weather"
-        tools:layout="@layout/fragment_weather" />
+        android:name="com.pgh.my.weather.WeatherFragment"
+        android:label="PollutionFragment"
+        tools:layout="@layout/fragment_weather">
+        <argument
+            android:name="lat"
+            app:argType="string"
+            app:nullable="false"
+            android:defaultValue="0"/>
+        <argument
+            android:name="lon"
+            app:argType="string"
+            app:nullable="false"
+            android:defaultValue="0"/>
+        <action
+            android:id="@+id/action_weatherFragment_to_cityFragment"
+            app:destination="@id/cityFragment" />
+
+
+    </fragment>
 </navigation>
