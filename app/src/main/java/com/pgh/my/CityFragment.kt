@@ -5,18 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pgh.my.Resycler.CityAddAdapter
+import com.pgh.my.Resycler.OnInfoClick
 import com.pgh.my.viewModel.CityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class CityFragment : Fragment() {
-
-    private var isWeatherCall = true
+class CityFragment() : Fragment(), OnInfoClick {
     private val viewModel by viewModel<CityViewModel>()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +27,7 @@ class CityFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val rs = view.findViewById<RecyclerView>(R.id.recycler_city)
         val layoutManager = LinearLayoutManager(context)
-        val adapter = CityAddAdapter()
+        val adapter = CityAddAdapter(this)
         rs.layoutManager = layoutManager
         rs.adapter = adapter
         viewModel.dataWeather.observe(viewLifecycleOwner) { value ->
@@ -36,11 +35,8 @@ class CityFragment : Fragment() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState.putBoolean(NETWORK_CALL_STATE, isWeatherCall)
-        super.onSaveInstanceState(outState)
-    }
-    companion object {
-        const val NETWORK_CALL_STATE = "NETWORK_CALL_STATE"
+    override fun onClickListener(view: View, lat: String, lon: String) {
+        Navigation.findNavController(view)
+            .navigate(CityFragmentDirections.actionCityFragmentToWeatherFragment(lon, lat))
     }
 }

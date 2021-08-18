@@ -18,5 +18,4 @@ interface WeatherDao {
 
     @Delete
     fun delete(weather: Weather)
-
 }

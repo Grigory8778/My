@@ -16,7 +16,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 open class WeatherFragment : Fragment() {
 
-    private var isPollutionCall = true
     private lateinit var textInfoTemp: TextView
     private lateinit var textNameTemp: TextView
     private lateinit var textNameHumiditi: TextView
@@ -39,19 +38,18 @@ open class WeatherFragment : Fragment() {
         textInfoTemp = view.findViewById(R.id.weather_fragment_tv_temp_info)
         textNameHumiditi = view.findViewById(R.id.weather_fragment_tv_humidity)
         weatherViewModel.getCitiData(args.lat, args.lon)
-        getInfoPollution()
+        getInfoWeather()
         view.findViewById<Button>(R.id.weather_fragment_button).setOnClickListener {
             Navigation.findNavController(view)
                 .navigate(R.id.action_weatherFragment_to_cityFragment)
-            isPollutionCall = !isPollutionCall
         }
     }
 
-    private fun getInfoPollution() {
-        weatherViewModel.tempPollution.observe(viewLifecycleOwner) { value ->
+    private fun getInfoWeather() {
+        weatherViewModel.tempWeather.observe(viewLifecycleOwner) { value ->
             textInfoTemp.text = value.main.temp.toString()
         }
-        weatherViewModel.tempPollution.observe(viewLifecycleOwner) { value ->
+        weatherViewModel.tempWeather.observe(viewLifecycleOwner) { value ->
             textInfoHumiditi.text = value.main.humidity.toString()
         }
     }

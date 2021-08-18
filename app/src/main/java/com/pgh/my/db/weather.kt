@@ -9,5 +9,4 @@ data class Weather(
     var id: Long,
     var name: String? = null,
     var city: String? = null
-
 )
